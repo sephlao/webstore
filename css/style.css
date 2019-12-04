@@ -2,7 +2,11 @@
 
 
 body {
-    font-family: 'Nunito', Verdana, Geneva, Tahoma, sans-serif
+    font-family: 'Nunito', Verdana, Geneva, Tahoma, sans-serif;
+    max-width: 500px;
+    margin: 0 auto;
+    border: 1px solid black;
+    height: 100vh;
 }
 
 h1 {
@@ -42,4 +46,21 @@ button {
 
 .btn.shopping_cart {
     justify-self: end;
+}
+
+.discount-msg {
+    grid-column: 1/5;
+    background-color: white;
+    width: 100%;
+    color: black;
+    text-align: center;
+    padding: .25em;
+    display: grid;
+    grid-template-columns: 1fr 2em;
+    align-items: center;
+}
+
+.discount-msg > span {
+    color: black;
+    font-size: 1em;
 }
