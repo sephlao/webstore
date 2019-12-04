@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,400i,700&display=swap');
+
+
+body {
+    font-family: 'Nunito', Verdana, Geneva, Tahoma, sans-serif
+}
+
+h1 {
+    font-size: 2em;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+}
+
+.logo-text {
+    font-weight: bold;
+    justify-self: center;
+}
+
+.material-icons {
+    color: white;
+    font-size: 2.125em;
+}
+
+.main-header {
+    background-color: black;
+    color: white;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+}
+
+button {
+    margin: .5em;
+}
+
+.btn.menu {
+    justify-self: start;
+}
+
+.btn.shopping_cart {
+    justify-self: end;
+}
