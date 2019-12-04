@@ -5,7 +5,7 @@ body {
     font-family: 'Nunito', Verdana, Geneva, Tahoma, sans-serif;
     max-width: 500px;
     margin: 0 auto;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     height: 100vh;
 }
 
@@ -63,4 +63,13 @@ button {
 .discount-msg > span {
     color: black;
     font-size: 1em;
+}
+
+footer {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    background: black;
+    color: white;
+    padding: 1em;
 }
