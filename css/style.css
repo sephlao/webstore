@@ -57,14 +57,14 @@ button {
     color: black;
     text-align: center;
     padding: .25em;
-    display: grid;
-    grid-template-columns: 1fr 2em;
-    align-items: center;
+    position: relative;
 }
 
 .discount-msg > span {
     color: black;
     font-size: 1em;
+    position: absolute;
+    right: 1em;
 }
 
 footer {
@@ -85,7 +85,7 @@ header > form {
 
 input[name="search"] {
     width: 100%;
-    padding: .25em 1em .25em 2.5em;
+    padding: .5em 1em .5em 2.5em;
     border-radius: 3px;
     border: none;
 }
@@ -99,7 +99,7 @@ input[name="search"] {
     color: black;
     font-size: 1.5em;
     padding: 0 .25em;
-    top: 4px;
+    top: .375rem;
 }
 
 section.filter {
@@ -130,6 +130,10 @@ section.filter {
     width: 100%;
     background: none;
     border: none;
+}
+
+.products > p {
+    margin: 1em 1.5em -1em 1.5em;
 }
 
 .card {
@@ -214,8 +218,12 @@ section.filter {
     color: white;
 }
 
+.rating {
+    text-align: center;
+}
+
 .rating .material-icons {
-    color: black;
+    color: darkgoldenrod;
     font-size: 1.5em;
 }
 

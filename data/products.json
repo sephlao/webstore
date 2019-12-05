@@ -1,0 +1,222 @@
+[
+    {
+        "id": "RELO_P_01",
+        "name": "Graphite",
+        "category": "Altitude",
+        "price": 134.99,
+        "quantity": 10,
+        "imgSrc": "Altitude_Graphite.jpg",
+        "reviews": 321,
+        "rating": 4.5
+    },
+    {
+        "id": "RELO_P_02",
+        "name": "Matte Black Pine",
+        "category": "Altitude",
+        "price": 134.99,
+        "quantity": 10,
+        "imgSrc": "Altitude_Matte_Black_Pine.jpg",
+        "reviews": 212,
+        "rating": 4.5
+    },
+    {
+        "id": "RELO_P_03",
+        "name": "Matte Black Red",
+        "category": "Altitude",
+        "price": 134.99,
+        "quantity": 10,
+        "imgSrc": "Altitude_Matte_Black_Red.jpg",
+        "reviews": 29,
+        "rating": 4.5
+    },
+    {
+        "id": "RELO_P_04",
+        "name": "Silver Navy",
+        "category": "Altitude",
+        "price": 134.99,
+        "quantity": 10,
+        "imgSrc": "Altitude_Silver_Navy.jpg",
+        "reviews": 209,
+        "rating": 4.5
+    },
+    {
+        "id": "RELO_P_05",
+        "name": "Brushed Gold",
+        "category": "Ava",
+        "price": 115.99,
+        "quantity": 10,
+        "imgSrc": "Ava_Brushed_Gold.jpg",
+        "reviews": 209,
+        "rating": 4.5
+    },
+    {
+        "id": "RELO_P_06",
+        "name": "Brushed Silver",
+        "category": "Ava",
+        "price": 115.99,
+        "quantity": 10,
+        "imgSrc": "Ava_Brushed_Silver.jpg",
+        "reviews": 209,
+        "rating": 4.5
+    },
+    {
+        "id": "RELO_P_07",
+        "name": "Gold Jet Black",
+        "category": "Ava",
+        "price": 115.99,
+        "quantity": 10,
+        "imgSrc": "Ava_Gold_Jet_Black.jpg",
+        "reviews": 209,
+        "rating": 4.5
+    },
+    {
+        "id": "RELO_P_08",
+        "name": "Copper Slate Blue",
+        "category": "Chrono S",
+        "price": 149.99,
+        "quantity": 10,
+        "imgSrc": "Chrono_S_Copper_Slate_Blue.jpg",
+        "reviews": 209,
+        "rating": 4.5
+    },
+    {
+        "id": "RELO_P_09",
+        "name": "Blue Steel",
+        "category": "Chrono S",
+        "price": 149.99,
+        "quantity": 10,
+        "imgSrc": "Chrono-S-Blue-Steel.jpg",
+        "reviews": 209,
+        "rating": 4.5
+    },
+    {
+        "id": "RELO_P_10",
+        "name": "Gunmetal Walnut",
+        "category": "Chrono S",
+        "price": 149.99,
+        "quantity": 10,
+        "imgSrc": "Chrono-S-Gunmetal_Walnut.jpg",
+        "reviews": 209,
+        "rating": 4.5
+    },
+    {
+        "id": "RELO_P_11",
+        "name": "Matte Black Steel",
+        "category": "Chrono S",
+        "price": 149.99,
+        "quantity": 10,
+        "imgSrc": "Chrono-S-Matte-Black-Steel.jpg",
+        "reviews": 209,
+        "rating": 4.5
+    },
+    {
+        "id": "RELO_P_12",
+        "name": "Matte Gray",
+        "category": "Chrono S",
+        "price": 149.99,
+        "quantity": 10,
+        "imgSrc": "Chrono-S-Matte-Gray.jpg",
+        "reviews": 209,
+        "rating": 4.5
+    },
+    {
+        "id": "RELO_P_13",
+        "name": "Rose Gold White",
+        "category": "Chrono S",
+        "price": 149.99,
+        "quantity": 10,
+        "imgSrc": "Chrono-S-Rose-Gold_White.jpg",
+        "reviews": 209,
+        "rating": 4.5
+    },
+    {
+        "id": "RELO_P_14",
+        "name": "Silver White",
+        "category": "Eros Mesh",
+        "price": 129.99,
+        "quantity": 15,
+        "imgSrc": "Eros_33mm_Mesh_Silver_White.jpg",
+        "reviews": 209,
+        "rating": 4.5
+    },
+    {
+        "id": "RELO_P_15",
+        "name": "Matte Black",
+        "category": "Eros Mesh",
+        "price": 129.99,
+        "quantity": 15,
+        "imgSrc": "Eros_Mesh_Matte_Black.jpg",
+        "reviews": 209,
+        "rating": 4.5
+    },
+    {
+        "id": "RELO_P_16",
+        "name": "Rose Blue Pearl",
+        "category": "Eros Mesh",
+        "price": 129.99,
+        "quantity": 15,
+        "imgSrc": "Eros_Mesh_Rose_Blue_Pearl.jpg",
+        "reviews": 209,
+        "rating": 4.5
+    },
+    {
+        "id": "RELO_P_17",
+        "name": "Rose White",
+        "category": "Eros Mesh",
+        "price": 129.99,
+        "quantity": 15,
+        "imgSrc": "Eros_Mesh_Rose_White.jpg",
+        "reviews": 209,
+        "rating": 4.5
+    },
+    {
+        "id": "RELO_P_18",
+        "name": "Marble Gray",
+        "category": "Eros",
+        "price": 129.99,
+        "quantity": 15,
+        "imgSrc": "Marble_Carrara_Harbor_Gray.jpg",
+        "reviews": 209,
+        "rating": 4.5
+    },
+    {
+        "id": "RELO_P_19",
+        "name": "Black Rose Gold",
+        "category": "Rogue",
+        "price": 139.99,
+        "quantity": 10,
+        "imgSrc": "Rogue_Black_Rose_Gold.jpg",
+        "reviews": 209,
+        "rating": 4.5
+    },
+    {
+        "id": "RELO_P_20",
+        "name": "Blue Cobolt",
+        "category": "Rogue",
+        "price": 139.99,
+        "quantity": 10,
+        "imgSrc": "Rogue_Blue_Cobolt.jpg",
+        "reviews": 209,
+        "rating": 4.5
+    },
+    {
+        "id": "RELO_P_21",
+        "name": "Rose Gold",
+        "category": "Rogue",
+        "price": 139.99,
+        "quantity": 10,
+        "imgSrc": "Rogue_Rose_Gold.jpg",
+        "reviews": 209,
+        "rating": 4.5
+    },
+    {
+        "id": "RELO_P_22",
+        "name": "Silver Black",
+        "category": "Rogue",
+        "price": 139.99,
+        "quantity": 10,
+        "imgSrc": "Rogue-Silver_Black.jpg",
+        "reviews": 209,
+        "rating": 4.5
+    }
+]
