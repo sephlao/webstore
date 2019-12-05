@@ -74,7 +74,7 @@ const getSortedProducts = (sortby, products) => (sortby.startsWith('p')) ?
  * @param {string} search 
  * @param {{}} products 
  */
-const getSearchedProducts = (search, products) => products.filter(p => p.name.toLowerCase().includes(search));
+const getSearchedProducts = (search, products) => products.filter(p => p.name.toLowerCase().includes(search.trim()));
 
 /**
  * returns products by specific category
