@@ -1,44 +1,140 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relo - High Quality Watches</title>
-    <meta name="description" content="Relo is a watch maker with top of the line products loved by Canadians">
-    <meta name="author" content="Joseph Lao">
-    <link rel="stylesheet" href="css/reset.css"> <!-- You may change this "Reset" to "Normalize" if preferred -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> <!-- Material design icons are use below. Remove this line if using other font packs or images. Details on Material Design icons can be found here: https://material.io/resources/icons/ -->
-    <link rel="stylesheet" href="css/style.css?v=1">
-  </head>
-  <body>
 
-    <header class="main-header">
-      <p class="discount-msg">50% off on cyber monday sale! <span class="material-icons">close</span></p>
-      <button type="button" class="btn menu">
-        <span class="material-icons">menu</span>
-      </button>
-      <h1 class="logo-text">RELO</h1>
-      <button type="button" class="btn shopping_cart">
-        <span class="material-icons">shopping_cart</span>
-      </button>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relo - High Quality Watches</title>
+  <meta name="description" content="Relo is a watch maker with top of the line products loved by Canadians">
+  <meta name="author" content="Joseph Lao">
+  <link rel="stylesheet" href="css/reset.css"> <!-- You may change this "Reset" to "Normalize" if preferred -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <!-- Material design icons are use below. Remove this line if using other font packs or images. Details on Material Design icons can be found here: https://material.io/resources/icons/ -->
+  <link rel="stylesheet" href="css/style.css?v=1">
+</head>
+
+<body>
+
+  <header class="main-header">
+    <p class="discount-msg">50% off on cyber monday sale! <span class="material-icons">close</span></p>
+    <button type="button" class="btn menu">
+      <span class="material-icons">menu</span>
+    </button>
+    <h1 class="logo-text">RELO</h1>
+    <button type="button" class="btn shopping_cart">
+      <small id="cart_count">1</small><span class="material-icons">shopping_cart</span>
+    </button>
+  </header>
+
+  <main class="main" role="main">
+    <header>
+      <!-- this will be the search section -->
+      <form class="form-search">
+        <!-- <label for="search">Search</label> -->
+        <div class="form-group">
+          <span class="material-icons">search</span>
+          <input type="search" name="search" id="search" placeholder="Search product">
+        </div>
+      </form>
     </header>
 
-    <main class="main" role="main">
-      <header>
-        <!-- this will be the search and filter section -->
-        
-      </header>
-      <article role="article" class="products" id="products">
-        <!-- this will be the products container -->
-        <section class="product">
-          <!-- this will be the product container -->
-        </section>
-      </article>
-    </main>
+    <section class="filter">
+      <!-- this will be the filter section -->
 
-    <footer>
-      <p>this is the footer</p>
-    </footer>
-    <script src="js/main.js" defer></script>
-  </body>
+      <div class="form-group">
+        <label for="sort">Sort by</label>
+        <select name="sort" id="sort">
+          <option value="htl">Price (Highest to Lowest)</option>
+          <option value="lth">Price (Lowest to Highest)</option>
+          <option value="newest">Newest releases</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select name="category" id="category">
+          <option value="altitude">Altitude</option>
+          <option value="ava">Ava</option>
+          <option value="chrono">Chrono</option>
+          <option value="eros">Eros</option>
+          <option value="rogue">Rogue</option>
+        </select>
+      </div>
+    </section>
+
+
+    <article role="article" class="products" id="products">
+      <!-- this will be the products container -->
+      <section class="card product">
+        <!-- this will be the product container -->
+        <div class="card-header">
+          <div class="product-name">
+            <h2>Product name</h2>
+            <h3>Category</h3>
+          </div>
+          <h1 class="price">$169.99</h1>
+        </div>
+        <div class="card-body">
+          <img src="img/products/Altitude_Graphite.jpg" class="product-img" alt="" srcset="">
+          <div class="extra_info">
+            <div class="form-group">
+              <p>Case Size:</p>
+              <input type="radio" name="caseSize" value="40" id="40" checked>
+              <label for="40">40</label>
+              <input type="radio" name="caseSize" value="43" id="43">
+              <label for="43">43</label>
+            </div>
+            <div class="rating">
+              <span class="material-icons">star</span>
+              <span class="material-icons">star</span>
+              <span class="material-icons">star</span>
+              <span class="material-icons">star</span>
+              <span class="material-icons">star_half</span>
+            </div>
+            <p class="reviews">209 reviews</p>
+            <button type="button" class="btn add">add to cart</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="card product">
+          <!-- this will be the product container -->
+          <div class="card-header">
+            <div class="product-name">
+              <h2>Product name</h2>
+              <h3>Category</h3>
+            </div>
+            <h1 class="price">$169.99</h1>
+          </div>
+          <div class="card-body">
+            <img src="img/products/Altitude_Graphite.jpg" class="product-img" alt="" srcset="">
+            <div class="extra_info">
+              <div class="form-group">
+                <p>Case Size:</p>
+                <input type="radio" name="caseSize" value="40" id="40" checked>
+                <label for="40">40</label>
+                <input type="radio" name="caseSize" value="43" id="43">
+                <label for="43">43</label>
+              </div>
+              <div class="rating">
+                <span class="material-icons">star</span>
+                <span class="material-icons">star</span>
+                <span class="material-icons">star</span>
+                <span class="material-icons">star</span>
+                <span class="material-icons">star_half</span>
+              </div>
+              <p class="reviews">209 reviews</p>
+              <button type="button" class="btn add">add to cart</button>
+            </div>
+          </div>
+        </section>
+    </article>
+  </main>
+
+  <footer>
+    <p>this is the footer</p>
+  </footer>
+  <script src="js/main.js" defer></script>
+</body>
+
 </html>
