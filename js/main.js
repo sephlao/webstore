@@ -1,3 +1,10 @@
+// set global defaults
+const SETTINGS = {
+    sort: 'plh', // price low to high
+    category: 'all',
+    imagePath: 'img/products/'
+};
+
 /**
  * get products data using async await
  */
@@ -29,7 +36,7 @@ const getProductTemplate = product => {
             <h1 class="price">$${product.price.toFixed(2)}</h1>
         </div>
         <div class="card-body">
-            <img src="img/products/${product.imgSrc}" class="product-img" alt="${product.name}">
+            <img src="${SETTINGS.imagePath + product.imgSrc}" class="product-img" alt="${product.name}">
             <div class="extra_info">
             <div class="form-group">
                 <p>Case Size:</p>
@@ -54,14 +61,39 @@ const renderProductsOnHTML = products => {
 };
 
 /**
- * will filter searched products to show only matching items
- * @param {} {target} - event target
+ * returns sorted products
+ * @param {string} sortby 
+ * @param {{}} products 
  */
-const onSearchProduct = (value, products) => {
-    if (!value) renderProductsOnHTML(products);
-    else if (value.length < 3) return;
-    const searchedProducts = products.filter(p => p.name.toLowerCase().includes(value));
-    renderProductsOnHTML(searchedProducts);
+const getSortedProducts = (sortby, products) => (sortby.startsWith('p')) ?
+    products.sort((a, b) => sortby == 'plh' ? a.price - b.price : b.price - a.price) :
+    products.sort((a, b) => sortby == 'rlh' ? a.rating - b.rating : b.rating - a.rating);
+
+/**
+ * returns searched products
+ * @param {string} search 
+ * @param {{}} products 
+ */
+const getSearchedProducts = (search, products) => products.filter(p => p.name.toLowerCase().includes(search));
+
+/**
+ * returns products by specific category
+ * @param {string} category 
+ * @param {{}} products 
+ */
+const getProductsByCategory = (category, products) => products.filter(p => p.category.toLowerCase().includes(category.toLowerCase()));
+
+/**
+ * event callback that filters products based on search, sort and category value
+ * @param {{}} products 
+ */
+const doFiltering = products => {
+    const category = document.getElementById(`category`).value
+    const sort = document.getElementById(`sort`).value
+    const search = document.getElementById(`search`).value
+    // filter products by category then sort accordingly if search value is > 2 then search product
+    const filteredProducts = getSearchedProducts(search.length > 2 ? search : '', getSortedProducts(sort, !category ? products : getProductsByCategory(category, products)));
+    renderProductsOnHTML(filteredProducts)
 };
 
 /**
@@ -70,10 +102,13 @@ const onSearchProduct = (value, products) => {
 window.addEventListener(`load`, async () => {
     // get products
     const products = await getProductsData();
+    // sort products by default settings
     // render products on html
-    renderProductsOnHTML(products);
+    renderProductsOnHTML(getSortedProducts(SETTINGS.sort, [...products]));
 
+    const listenToFilterEvents = () => doFiltering([...products]);
     // add search event listener
-    document.getElementById(`search`).addEventListener(`input`, ({ target }) => onSearchProduct(target.value, products));
-    // add filter event listener
+    document.getElementById(`search`).addEventListener(`input`, listenToFilterEvents);
+    // add filter event listener for sort and category
+    document.querySelectorAll(`select`).forEach(s => s.addEventListener(`change`, listenToFilterEvents))
 });

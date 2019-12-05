@@ -17,7 +17,7 @@
         "quantity": 10,
         "imgSrc": "Altitude_Matte_Black_Pine.jpg",
         "reviews": 212,
-        "rating": 4.5
+        "rating": 5
     },
     {
         "id": "RELO_P_03",
@@ -37,7 +37,7 @@
         "quantity": 10,
         "imgSrc": "Altitude_Silver_Navy.jpg",
         "reviews": 209,
-        "rating": 4.5
+        "rating": 3.5
     },
     {
         "id": "RELO_P_05",
@@ -57,7 +57,7 @@
         "quantity": 10,
         "imgSrc": "Ava_Brushed_Silver.jpg",
         "reviews": 209,
-        "rating": 4.5
+        "rating": 4
     },
     {
         "id": "RELO_P_07",
@@ -67,7 +67,7 @@
         "quantity": 10,
         "imgSrc": "Ava_Gold_Jet_Black.jpg",
         "reviews": 209,
-        "rating": 4.5
+        "rating": 5
     },
     {
         "id": "RELO_P_08",
@@ -77,7 +77,7 @@
         "quantity": 10,
         "imgSrc": "Chrono_S_Copper_Slate_Blue.jpg",
         "reviews": 209,
-        "rating": 4.5
+        "rating": 5
     },
     {
         "id": "RELO_P_09",
@@ -97,7 +97,7 @@
         "quantity": 10,
         "imgSrc": "Chrono-S-Gunmetal_Walnut.jpg",
         "reviews": 209,
-        "rating": 4.5
+        "rating": 3.5
     },
     {
         "id": "RELO_P_11",
@@ -107,7 +107,7 @@
         "quantity": 10,
         "imgSrc": "Chrono-S-Matte-Black-Steel.jpg",
         "reviews": 209,
-        "rating": 4.5
+        "rating": 5
     },
     {
         "id": "RELO_P_12",
@@ -117,7 +117,7 @@
         "quantity": 10,
         "imgSrc": "Chrono-S-Matte-Gray.jpg",
         "reviews": 209,
-        "rating": 4.5
+        "rating": 3.5
     },
     {
         "id": "RELO_P_13",
@@ -147,7 +147,7 @@
         "quantity": 15,
         "imgSrc": "Eros_Mesh_Matte_Black.jpg",
         "reviews": 209,
-        "rating": 4.5
+        "rating": 5
     },
     {
         "id": "RELO_P_16",
@@ -177,7 +177,7 @@
         "quantity": 15,
         "imgSrc": "Marble_Carrara_Harbor_Gray.jpg",
         "reviews": 209,
-        "rating": 4.5
+        "rating": 3
     },
     {
         "id": "RELO_P_19",
@@ -197,7 +197,7 @@
         "quantity": 10,
         "imgSrc": "Rogue_Blue_Cobolt.jpg",
         "reviews": 209,
-        "rating": 4.5
+        "rating": 4
     },
     {
         "id": "RELO_P_21",
@@ -207,7 +207,7 @@
         "quantity": 10,
         "imgSrc": "Rogue_Rose_Gold.jpg",
         "reviews": 209,
-        "rating": 4.5
+        "rating": 3.5
     },
     {
         "id": "RELO_P_22",
