@@ -102,7 +102,7 @@ const getProductsByCategory = (category, products) => products.filter(p => p.cat
 const doFiltering = products => {
     const category = document.getElementById(`category`).value;
     const sort = document.getElementById(`sort`).value;
-    const search = document.getElementById(`search`).value.trim();
+    const search = document.getElementById(`search`).value.trim().toLowerCase();
     // filter products by category then sort accordingly if search value is > 2 then search product
     const filteredProducts = getSearchedProducts(search.length > 2 ? search : '', getSortedProducts(sort, !category ? products : getProductsByCategory(category, products)));
     renderProductsOnHTML(filteredProducts)
