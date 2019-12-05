@@ -1,7 +1,7 @@
 // set global defaults
 const SETTINGS = {
     sort: 'plh', // price low to high
-    category: 'all',
+    category: 'all', // show all products
     imagePath: 'img/products/'
 };
 
@@ -53,12 +53,9 @@ const getProductTemplate = product => {
     </section>`
 };
 
-const renderProductsOnHTML = products => {
-    const productsElement = document.getElementById(`products`);
-    productsElement.innerHTML = products.reduce((acc, p) => acc + getProductTemplate(p), ``);
-    productsElement.insertAdjacentHTML(`afterbegin`, `<p>Showing ${products.length} products...</p>`)
-
-};
+const renderProductsOnHTML = products =>
+    document.getElementById(`products`).innerHTML =
+    `<p>Showing ${products.length} products...</p>` + products.reduce((acc, p) => acc + getProductTemplate(p), ``);
 
 /**
  * returns sorted products
