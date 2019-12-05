@@ -51,7 +51,18 @@ const renderProductsOnHTML = products => {
     productsElement.innerHTML = products.reduce((acc, p) => acc + getProductTemplate(p), ``);
     productsElement.insertAdjacentHTML(`afterbegin`, `<p>Showing ${products.length} products...</p>`)
 
-}
+};
+
+/**
+ * will filter searched products to show only matching items
+ * @param {} {target} - event target
+ */
+const onSearchProduct = (value, products) => {
+    if (!value) renderProductsOnHTML(products);
+    else if (value.length < 3) return;
+    const searchedProducts = products.filter(p => p.name.toLowerCase().includes(value));
+    renderProductsOnHTML(searchedProducts);
+};
 
 /**
  * window on load event listener
@@ -59,10 +70,10 @@ const renderProductsOnHTML = products => {
 window.addEventListener(`load`, async () => {
     // get products
     const products = await getProductsData();
-    console.log(products);
     // render products on html
     renderProductsOnHTML(products);
 
     // add search event listener
+    document.getElementById(`search`).addEventListener(`input`, ({ target }) => onSearchProduct(target.value, products));
     // add filter event listener
 });
