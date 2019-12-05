@@ -29,8 +29,12 @@ button {
 }
 
 .material-icons {
-    color: white;
+    color: black;
     font-size: 2.125em;
+}
+
+.main {
+    position: relative;
 }
 
 .main-header {
@@ -39,6 +43,10 @@ button {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
+}
+
+.main-header .material-icons {
+    color: white;
 }
 
 .btn.menu {
@@ -57,14 +65,6 @@ button {
     color: black;
     text-align: center;
     padding: .25em;
-    position: relative;
-}
-
-.discount-msg > span {
-    color: black;
-    font-size: 1em;
-    position: absolute;
-    right: 1em;
 }
 
 footer {
@@ -96,7 +96,6 @@ input[name="search"] {
 
 .form-group > .material-icons {
     position: absolute;
-    color: black;
     font-size: 1.5em;
     padding: 0 .25em;
     top: .375rem;
@@ -231,4 +230,111 @@ section.filter {
     text-align: center;
     text-decoration: underline;
     font-style: italic;
+}
+
+.cart.wrapper {
+    background: rgba(0, 0, 0, .8);
+    position: absolute;
+    top: 0;
+    min-height: 100%;
+    display: none;
+}
+
+.wrapper .content {
+    position: sticky;
+    top: 5rem;
+    background: #f2f2f2;
+    max-height: 80vh;
+    width: 90%;
+    margin: 0 auto;
+    padding: 1em;
+    border-radius: 3px;
+    overflow: scroll;
+}
+
+
+.card.product-invoice {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    background: #fff;
+    padding: 1em;
+    margin: .5em 0;
+}
+
+.product-info {
+    text-transform: uppercase;
+}
+
+.product-info > p {
+    font-size: .825em;
+    font-weight: bold;
+}
+
+.product-info > small {
+    font-size: .75em;
+    font-style: italic;
+}
+
+.product-quantity {
+    text-align: center;
+}
+
+.product-quantity > .material-icons {
+    font-size: 1.5em;
+    background: black;
+    color: white;
+    border-radius: 50%;
+}
+
+.product-price {
+    font-weight: bold;
+    font-size: 2em;
+}
+
+.product-quantity > #quantity {
+    font-size: 1.5em;
+    padding: 0 .25em;
+}
+
+.cart .content > h2 {
+    margin: .5em 0;
+}
+
+.cart.invoice {
+    background: black;
+    color: white;
+    padding: 1em;
+    border-radius: 3px;
+    font-size: 1.2em;
+}
+
+.cart.invoice > ul {
+    margin: .5em 0;
+}
+.cart.invoice > ul > li {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.cart.invoice > ul > li > span {
+    justify-self: start;
+}
+
+.cart.invoice > ul > li > strong {
+    justify-self: end;
+}
+
+.btn.checkout {
+    background: white;
+    padding: .5em;
+    width: 100%;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 0;
+    border-radius: 3px;
+}
+
+.cart.wrapper.show {
+    display: block;
 }

@@ -16,13 +16,13 @@
 <body>
 
   <header class="main-header">
-    <p class="discount-msg">50% off on cyber monday sale! <span class="material-icons">close</span></p>
+    <p class="discount-msg">50% off on cyber monday sale!</p>
     <button type="button" class="btn menu">
       <span class="material-icons">menu</span>
     </button>
     <h1 class="logo-text">RELLO</h1>
     <button type="button" class="btn shopping_cart">
-      <small id="cart_count">1</small><span class="material-icons">shopping_cart</span>
+      <small id="cart_count"></small><span class="material-icons">shopping_cart</span>
     </button>
   </header>
 
@@ -63,10 +63,53 @@
       </div>
     </section>
 
-
     <article role="article" class="products" id="products">
-      <!-- this will be the products container -->      
+      <!-- this will be the products container -->
     </article>
+
+    <aside class="cart wrapper">
+      <!-- this is the shopping cart section -->
+      <div class="content">
+        <h2>Shopping Cart (1 item)</h2>
+        <div class="cart items" id="cartItems">
+          <div class="card product-invoice">
+            <div class="product-info">
+              <img src="img/products/Altitude_Graphite.jpg" alt="img">
+              <p>product name</p>
+              <small>category - caseSize MM</small>
+            </div>
+            <div class="product-quantity">
+              <div class="product-price">$149.99</div>
+              <span class="material-icons">remove</span>
+              <span id="quantity">1</span>
+              <span class="material-icons">add</span>
+            </div>
+          </div>
+          <div class="card product-invoice">
+              <div class="product-info">
+                <img src="img/products/Altitude_Graphite.jpg" alt="img">
+                <p>product name</p>
+                <small>category - caseSize MM</small>
+              </div>
+              <div class="product-quantity">
+                <div class="product-price">$149.99</div>
+                <span class="material-icons">remove</span>
+                <span id="quantity">1</span>
+                <span class="material-icons">add</span>
+              </div>
+            </div>
+        </div>
+        <div class="cart invoice">
+          <ul>
+            <li><span>Subtotal</span><strong>123</strong></li>
+            <li><span>Tax</span><strong>123</strong></li>
+            <li><span>Shipping</span><strong>Free</strong></li>
+            <li><span>Total</span><strong>123</strong></li>
+          </ul>
+          <button type="button" class="btn checkout" id="checkout">checkout</button>
+        </div>
+      </div>
+    </aside>
   </main>
 
   <footer>
