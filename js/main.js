@@ -15,7 +15,7 @@ const CART = {
 /**
  * get products data using async await
  */
-const getProductsData = async () => await fetch(`data/products.json`).then(d => d.json()).catch(e => console.error(e));
+const getProductsData = async () => await fetch(`data/products.json`).then(d => d.json()).catch(console.error);
 
 /**
  * returns product as html template
@@ -198,7 +198,7 @@ const decrementQuantity = id => {
     const product = CART.items.find(c => c.id == id);
     const orgPrice = product.price / product.quantity;
     product.price = (orgPrice * --product.quantity);
-    if (product.quantity == 0) {
+    if (!product.quantity) {
         // remove product from cart
         CART.remove(CART.items.findIndex(c => c.id == id));
         document.getElementById(`cart_count`).innerText = CART.items.length ? CART.items.length : '';
