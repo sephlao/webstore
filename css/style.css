@@ -185,6 +185,11 @@ section.filter {
     font-weight: bold;
 }
 
+.btn.add.out {
+    background: red;
+    font-style: italic;
+}
+
 .card-body .form-group {
     margin: 1em;
     text-align: center;

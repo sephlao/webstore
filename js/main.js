@@ -58,7 +58,7 @@ const getProductTemplate = product => {
             </div>
             <div class="rating">${getRatingsHTML(product.rating)}</div>
             <p class="reviews">${product.reviews} reviews</p>
-            <button type="button" class="btn add" data-productid="${product.id}">add to cart</button>
+            <button type="button" class="btn add ${!product.quantity ? 'out' : ''}" data-productid="${product.id}">${!product.quantity ? 'sold out' : 'add to cart'}</button>
             </div>
         </div>
     </section>`
@@ -219,7 +219,7 @@ window.addEventListener(`load`, async () => {
     // body click event deligation
     document.body.addEventListener(`click`, ({ target }) => {
         const match = str => target.matches(str);
-        if (match(`button[data-productid]`)) addProductToCart(target.dataset.productid);
+        if (match(`button[data-productid]`) && !target.className.includes(`out`)) addProductToCart(target.dataset.productid);
         else if (match(`.cart.wrapper`) || match(`button.btn.shopping_cart`) || match(`button.btn.shopping_cart > .material-icons`)) toggleShoppingCart([...products]);
         else if (match(`.material-icons.remove`)) decrementQuantity(target.parentNode.dataset.cartid);
         else if (match(`.material-icons.add`)) incrementQuantity(target.parentNode.dataset.cartid)

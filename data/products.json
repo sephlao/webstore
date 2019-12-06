@@ -4,7 +4,7 @@
         "name": "Graphite",
         "category": "Altitude",
         "price": 134.99,
-        "quantity": 10,
+        "quantity": 0,
         "imgSrc": "Altitude_Graphite.jpg",
         "reviews": 321,
         "rating": 4.5
@@ -54,7 +54,7 @@
         "name": "Brushed Silver",
         "category": "Ava",
         "price": 115.99,
-        "quantity": 10,
+        "quantity": 0,
         "imgSrc": "Ava_Brushed_Silver.jpg",
         "reviews": 209,
         "rating": 4
@@ -84,7 +84,7 @@
         "name": "Blue Steel",
         "category": "Chrono S",
         "price": 149.99,
-        "quantity": 10,
+        "quantity": 0,
         "imgSrc": "Chrono-S-Blue-Steel.jpg",
         "reviews": 209,
         "rating": 4.5
