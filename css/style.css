@@ -106,7 +106,7 @@ section.filter {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: .5em;
-    margin: .5em 1.5em;
+    margin: 1em 1.5em;
 }
 
 .filter > .form-group {
