@@ -123,11 +123,81 @@ const addProductToCart = productId => {
     document.getElementById(`cart_count`).innerText = CART.items.length;
 };
 
+const getProductsOnCart = (products) => {
+    const getProductById = id => products.find(p => p.id == id)
+    return CART.items.filter(c => getProductById(c.id))
+        .map(c => {
+            const product = getProductById(c.id);
+            c.price = c.quantity * product.price;
+            c.stocks = product.quantity;
+            return ({ ...product, toCheckout: { qty: c.quantity, size: c.size, price: c.price } })
+        });
+}
+
+const getCartProductAsHTMLString = products => {
+    const template = p =>
+        `<div class="card product-invoice">
+        <div class="product-info">
+            <img src="${SETTINGS.imagePath}${p.imgSrc}" alt="img">
+            <p>${p.name} - ${p.toCheckout.size} MM</p>
+            <small>${p.category}</small>
+        </div>
+        <div class="product-quantity" data-cartid="${p.id}_${p.toCheckout.size}">
+            <div class="product-price">$${p.toCheckout.price.toFixed(2)}</div>
+            <span class="material-icons remove">remove</span>
+            <span class="quantity">${p.toCheckout.qty}</span>
+            <span class="material-icons add">add</span>
+        </div>
+    </div>`;
+
+    return products.reduce((acc, prod) => acc + template(prod), ``);
+}
+
+const getCartCountText = () => `You have ${CART.items.length} item${CART.items.length == 1 ? '' : 's'} in your cart`;
+
 /**
  * toggles cart section show/hide
  */
-const toggleShoppingCart = () => {
-    document.querySelector(`aside.cart.wrapper`).classList.toggle(`show`);
+const toggleShoppingCart = products => {
+    const checkoutSection = document.querySelector(`aside.cart.wrapper`);
+    checkoutSection.classList.toggle(`show`);
+    if (checkoutSection.className.endsWith('show')) {
+        const c = `<p id="checkout_count">${getCartCountText()}</p>`;
+        document.getElementById(`cartItems`).innerHTML = c + getCartProductAsHTMLString(getProductsOnCart(products));
+    }
+}
+
+const updateCheckoutPriceAndQuantity = (p, q, id) => {
+    Array.from(document.querySelector(`.product-quantity[data-cartid="${id}"]`).children).forEach(c => {
+        if (c.matches(`.product-price`)) c.innerText = `$${p.toFixed(2)}`;
+        else if (c.matches(`.quantity`)) c.innerText = q;
+        else return;
+    })
+}
+
+// cart id is product id + case size in order to get the product id back remove last 3 characters
+const getProductIdOfCartId = id => id.substring(0, id.length - 3);
+
+const decrementQuantity = id => {
+    const product = CART.items.find(c => c.id == getProductIdOfCartId(id));
+    const orgPrice = product.price / product.quantity;
+    product.price = (orgPrice * --product.quantity);
+    if (product.quantity == 0) {
+        // remove product from cart
+        CART.remove(CART.items.findIndex(c => c.id == getProductIdOfCartId(id)));
+        document.getElementById(`cart_count`).innerText = CART.items.length ? CART.items.length : '';
+        document.getElementById(`checkout_count`).innerText = getCartCountText();
+        document.querySelector(`.product-quantity[data-cartid="${id}"]`).parentNode.remove();
+    } else
+        updateCheckoutPriceAndQuantity(product.price, product.quantity, id);
+}
+
+const incrementQuantity = id => {
+    const product = CART.items.find(c => c.id == getProductIdOfCartId(id));
+    if (!(product.quantity < product.stocks)) return;
+    const orgPrice = product.price / product.quantity;
+    product.price = (orgPrice * ++product.quantity);
+    updateCheckoutPriceAndQuantity(product.price, product.quantity, id);
 }
 
 /**
@@ -150,7 +220,9 @@ window.addEventListener(`load`, async () => {
     document.body.addEventListener(`click`, ({ target }) => {
         const match = str => target.matches(str);
         if (match(`button[data-productid]`)) addProductToCart(target.dataset.productid);
-        else if(match(`.cart.wrapper`) || match(`button.btn.shopping_cart`) || match(`button.btn.shopping_cart > .material-icons`)) toggleShoppingCart();
+        else if (match(`.cart.wrapper`) || match(`button.btn.shopping_cart`) || match(`button.btn.shopping_cart > .material-icons`)) toggleShoppingCart([...products]);
+        else if (match(`.material-icons.remove`)) decrementQuantity(target.parentNode.dataset.cartid);
+        else if (match(`.material-icons.add`)) incrementQuantity(target.parentNode.dataset.cartid)
         else return;
     });
 
