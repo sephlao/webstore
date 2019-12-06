@@ -10,6 +10,7 @@ const CART = {
     items: [],
     add: function (item) { this.items.push(item) },
     remove: function (id) { this.items.splice(this.items.findIndex(c => c.id == id), 1) },
+    find: function (id) { return this.items.find(c => c.id == id) }
 }
 
 /**
@@ -117,7 +118,7 @@ const addProductToCart = productId => {
     const caseSize = +document.querySelector(`input[name="${productId}_caseSize"]:checked`).value;
 
     // find product on cart if it exist increment qty else add item to cart
-    const cartItem = CART.items.find(item => item.id == cartId(productId, caseSize));
+    const cartItem = CART.find(cartId(productId, caseSize));
     if (cartItem) cartItem.quantity++;
     else CART.add({ id: cartId(productId, caseSize), size: caseSize, quantity: 1 });
     document.getElementById(`cart_count`).innerText = CART.items.length;
@@ -195,7 +196,7 @@ const updateCheckoutPriceAndQuantity = (p, q, id) => {
 }
 
 const decrementQuantity = id => {
-    const product = CART.items.find(c => c.id == id);
+    const product = CART.find(id);
     const orgPrice = product.price / product.quantity;
     product.price = (orgPrice * --product.quantity);
     if (!product.quantity) {
@@ -209,7 +210,7 @@ const decrementQuantity = id => {
 }
 
 const incrementQuantity = id => {
-    const product = CART.items.find(c => c.id == id);
+    const product = CART.find(id);
     if (!(product.quantity < product.stocks)) return;
     const orgPrice = product.price / product.quantity;
     product.price = (orgPrice * ++product.quantity);
