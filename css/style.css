@@ -310,24 +310,32 @@ section.filter {
 .cart.invoice {
     background: black;
     color: white;
-    padding: 1em;
+    /* padding: 1em; */
     border-radius: 3px;
     font-size: 1.2em;
 }
 
-.cart.invoice > ul {
+#invoice {
+    padding: 1em;
+}
+
+#invoice:empty {
+    padding: 0;
+}
+
+.cart.invoice ul {
     margin: .5em 0;
 }
-.cart.invoice > ul > li {
+.cart.invoice ul > li {
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
-.cart.invoice > ul > li > span {
+.cart.invoice ul > li > span {
     justify-self: start;
 }
 
-.cart.invoice > ul > li > strong {
+.cart.invoice ul > li > strong {
     justify-self: end;
 }
 

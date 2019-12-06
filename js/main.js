@@ -113,21 +113,24 @@ const doFiltering = products => {
  * @param {string} productId 
  */
 const addProductToCart = productId => {
+    const cartId = (i, s) => i + '_' + s;
     const caseSize = +document.querySelector(`input[name="${productId}_caseSize"]:checked`).value;
 
     // find product on cart if it exist increment qty else add item to cart
-    const cartItem = CART.items.find(item => item.id == productId && item.size == caseSize);
+    const cartItem = CART.items.find(item => item.id == cartId(productId, caseSize));
     if (cartItem) cartItem.quantity++;
-    else CART.add({ id: productId, size: caseSize, quantity: 1 });
-
+    else CART.add({ id: cartId(productId, caseSize), size: caseSize, quantity: 1 });
     document.getElementById(`cart_count`).innerText = CART.items.length;
 };
 
+// cart id is product id + case size in order to get the product id back remove last 3 characters
+const getProductIdOfCartId = id => id.substring(0, id.length - 3);
+
 const getProductsOnCart = (products) => {
-    const getProductById = id => products.find(p => p.id == id)
-    return CART.items.filter(c => getProductById(c.id))
+    const getProductById = id => products.find(p => p.id == id);
+    return CART.items.filter(c => getProductById(getProductIdOfCartId(c.id)))
         .map(c => {
-            const product = getProductById(c.id);
+            const product = getProductById(getProductIdOfCartId(c.id));
             c.price = c.quantity * product.price;
             c.stocks = product.quantity;
             return ({ ...product, toCheckout: { qty: c.quantity, size: c.size, price: c.price } })
@@ -145,12 +148,28 @@ const getCartProductAsHTMLString = products => {
         <div class="product-quantity" data-cartid="${p.id}_${p.toCheckout.size}">
             <div class="product-price">$${p.toCheckout.price.toFixed(2)}</div>
             <span class="material-icons remove">remove</span>
-            <span class="quantity">${p.toCheckout.qty}</span>
+            <span class="quantity" id="qty">${p.toCheckout.qty}</span>
             <span class="material-icons add">add</span>
         </div>
     </div>`;
 
+    renderInvoiceOnHTML(products)
     return products.reduce((acc, prod) => acc + template(prod), ``);
+}
+
+const renderInvoiceOnHTML = products => {
+    const template = subtotal => ` 
+        <ul>
+            <li><span>Subtotal</span><strong>$${subtotal.toFixed(2)}</strong></li>
+            <li><span>Tax</span><strong>$${(subtotal * 0.13).toFixed(2)}</strong></li>
+            <li><span>Shipping</span><strong>${subtotal > 250 ? '$10' : 'Free'}</strong></li>
+            <li><span>Total</span><strong>$${(subtotal + (subtotal * 0.13) + (subtotal > 250 ? 10 : 0)).toFixed(2)}</strong></li>
+        </ul>
+        <button type="button" class="btn checkout" id="checkout">checkout</button>`;
+
+    // calculate subtotal, total and taxes
+    document.getElementById(`invoice`).innerHTML =
+        products.length > 0 ? template(products.reduce((sum, p) => sum + p.toCheckout.price, 0)) : '';
 }
 
 const getCartCountText = () => `You have ${CART.items.length} item${CART.items.length == 1 ? '' : 's'} in your cart`;
@@ -172,19 +191,16 @@ const updateCheckoutPriceAndQuantity = (p, q, id) => {
         if (c.matches(`.product-price`)) c.innerText = `$${p.toFixed(2)}`;
         else if (c.matches(`.quantity`)) c.innerText = q;
         else return;
-    })
+    });
 }
 
-// cart id is product id + case size in order to get the product id back remove last 3 characters
-const getProductIdOfCartId = id => id.substring(0, id.length - 3);
-
 const decrementQuantity = id => {
-    const product = CART.items.find(c => c.id == getProductIdOfCartId(id));
+    const product = CART.items.find(c => c.id == id);
     const orgPrice = product.price / product.quantity;
     product.price = (orgPrice * --product.quantity);
     if (product.quantity == 0) {
         // remove product from cart
-        CART.remove(CART.items.findIndex(c => c.id == getProductIdOfCartId(id)));
+        CART.remove(CART.items.findIndex(c => c.id == id));
         document.getElementById(`cart_count`).innerText = CART.items.length ? CART.items.length : '';
         document.getElementById(`checkout_count`).innerText = getCartCountText();
         document.querySelector(`.product-quantity[data-cartid="${id}"]`).parentNode.remove();
@@ -193,7 +209,7 @@ const decrementQuantity = id => {
 }
 
 const incrementQuantity = id => {
-    const product = CART.items.find(c => c.id == getProductIdOfCartId(id));
+    const product = CART.items.find(c => c.id == id);
     if (!(product.quantity < product.stocks)) return;
     const orgPrice = product.price / product.quantity;
     product.price = (orgPrice * ++product.quantity);
@@ -221,9 +237,14 @@ window.addEventListener(`load`, async () => {
         const match = str => target.matches(str);
         if (match(`button[data-productid]`) && !target.className.includes(`out`)) addProductToCart(target.dataset.productid);
         else if (match(`.cart.wrapper`) || match(`button.btn.shopping_cart`) || match(`button.btn.shopping_cart > .material-icons`)) toggleShoppingCart([...products]);
-        else if (match(`.material-icons.remove`)) decrementQuantity(target.parentNode.dataset.cartid);
-        else if (match(`.material-icons.add`)) incrementQuantity(target.parentNode.dataset.cartid)
+        else if (match(`.material-icons.remove`)) {
+            decrementQuantity(target.parentNode.dataset.cartid);
+            renderInvoiceOnHTML(getProductsOnCart([...products]));
+        }
+        else if (match(`.material-icons.add`)) {
+            incrementQuantity(target.parentNode.dataset.cartid)
+            renderInvoiceOnHTML(getProductsOnCart([...products]));
+        }
         else return;
     });
-
 });
