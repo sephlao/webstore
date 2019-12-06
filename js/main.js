@@ -9,7 +9,7 @@ const SETTINGS = {
 const CART = {
     items: [],
     add: function (item) { this.items.push(item) },
-    remove: function (index) { this.items.splice(index, 1) },
+    remove: function (id) { this.items.splice(this.items.findIndex(c => c.id == id), 1) },
 }
 
 /**
@@ -200,7 +200,7 @@ const decrementQuantity = id => {
     product.price = (orgPrice * --product.quantity);
     if (!product.quantity) {
         // remove product from cart
-        CART.remove(CART.items.findIndex(c => c.id == id));
+        CART.remove(id);
         document.getElementById(`cart_count`).innerText = CART.items.length ? CART.items.length : '';
         document.getElementById(`checkout_count`).innerText = getCartCountText();
         document.querySelector(`.product-quantity[data-cartid="${id}"]`).parentNode.remove();
