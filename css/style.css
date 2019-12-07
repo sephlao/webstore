@@ -55,7 +55,7 @@ button {
 
 .btn.shopping_cart {
     justify-self: end;
-    color: darksalmon;
+    color: #c88068;
 }
 
 .discount-msg {
@@ -153,7 +153,7 @@ section.filter {
 
 .price {
     font-weight: bold;
-    color: darksalmon;
+    color: #c88068;
 }
 
 .card-header {
@@ -247,6 +247,7 @@ section.filter {
     top: 0;
     min-height: 100%;
     width: 100%;
+    backdrop-filter: blur(2px);
     display: none;
 }
 
@@ -385,10 +386,6 @@ section.filter {
 
 .news-row {
     grid-template-columns: 1fr;
-}
-
-.news-row > label{
-    visibility: hidden;
 }
 
 .news-row > input {

@@ -232,7 +232,9 @@ window.addEventListener(`load`, async () => {
     document.getElementById(`search`).addEventListener(`input`, listenToFilterEvents);
     // add filter event listener for sort and category
     document.querySelectorAll(`select`).forEach(s => s.addEventListener(`change`, listenToFilterEvents));
-
+    // prevent form submit
+    document.querySelector(`form`).addEventListener(`submit`, e => e.preventDefault());
+    
     // body click event deligation
     document.body.addEventListener(`click`, ({ target }) => {
         const match = str => target.matches(str);
