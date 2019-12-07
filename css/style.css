@@ -355,3 +355,62 @@ section.filter {
 .cart.wrapper.show {
     display: block;
 }
+
+.links, .socials-row, .news-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    margin: 1em;
+}
+
+.foot-link {
+    display: block;
+    line-height: 1.5em;
+    text-decoration: none;
+    color: white;
+}
+
+.social-icon {
+    filter: invert(100%) sepia(0%) saturate(3253%) hue-rotate(12deg) brightness(121%) contrast(90%);
+    width: 2em;
+}
+
+.socials-row > p {
+    grid-column: 1/4;
+    margin: .5em 0;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.news-row {
+    grid-template-columns: 1fr;
+}
+
+.news-row > label{
+    visibility: hidden;
+}
+
+.news-row > input {
+    background: black;
+    color: white;
+    border: 2px solid white;
+    border-radius: 3px;
+    padding: .5em;
+    width: 100%;
+}
+
+.copyright {
+    text-align: center;
+    margin: 1.5em 0;
+}
+
+.author {
+    position: absolute;
+    background: white;
+    color: black;
+    left: 0;
+    margin-top: 1em;
+    width: 100%;
+    text-align: center;
+    line-height: 1.5em;
+}
