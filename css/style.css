@@ -234,8 +234,10 @@ section.filter {
 
 .reviews {
     text-align: center;
-    text-decoration: underline;
+    line-height: 1.5em;
     font-style: italic;
+    display: block;
+    color: black;
 }
 
 .cart.wrapper {

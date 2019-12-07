@@ -58,7 +58,7 @@ const getProductTemplate = product => {
                 <label for="${product.id}_43">43</label>
             </div>
             <div class="rating">${getRatingsHTML(product.rating)}</div>
-            <p class="reviews">${product.reviews} reviews</p>
+            <a href="#" class="reviews">${product.reviews} reviews</a>
             <button type="button" class="btn add ${!product.quantity ? 'out' : ''}" data-productid="${product.id}">${!product.quantity ? 'sold out' : 'add to cart'}</button>
             </div>
         </div>
