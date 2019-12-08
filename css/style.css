@@ -174,7 +174,7 @@ section.filter {
     display: grid;
     grid-template-columns: 1fr;   
     justify-items: center;
-    align-items: self-start;
+    align-items: end;
 }
 
 .btn.add {
