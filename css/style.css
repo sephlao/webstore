@@ -415,6 +415,11 @@ section.filter {
     font-style: italic;
 }
 
+.extra_info {
+    justify-self: stretch;
+}
+
+ /* responsiveness  */
 @media screen and (min-width: 350px) {
     .card-body {
         grid-template-columns: 1fr 1fr;
