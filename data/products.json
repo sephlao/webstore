@@ -5,7 +5,7 @@
         "category": "Altitude",
         "price": 134.99,
         "quantity": 0,
-        "imgSrc": "Altitude_Graphite.jpg",
+        "imgSrc": "Altitude_Graphite.jpeg",
         "reviews": 321,
         "rating": 4.5
     },
@@ -15,7 +15,7 @@
         "category": "Altitude",
         "price": 134.99,
         "quantity": 10,
-        "imgSrc": "Altitude_Matte_Black_Pine.jpg",
+        "imgSrc": "Altitude_Matte_Black_Pine.jpeg",
         "reviews": 212,
         "rating": 5
     },
@@ -25,7 +25,7 @@
         "category": "Altitude",
         "price": 134.99,
         "quantity": 10,
-        "imgSrc": "Altitude_Matte_Black_Red.jpg",
+        "imgSrc": "Altitude_Matte_Black_Red.jpeg",
         "reviews": 29,
         "rating": 4.5
     },
@@ -35,7 +35,7 @@
         "category": "Altitude",
         "price": 134.99,
         "quantity": 10,
-        "imgSrc": "Altitude_Silver_Navy.jpg",
+        "imgSrc": "Altitude_Silver_Navy.jpeg",
         "reviews": 209,
         "rating": 3.5
     },
@@ -45,7 +45,7 @@
         "category": "Ava",
         "price": 115.99,
         "quantity": 10,
-        "imgSrc": "Ava_Brushed_Gold.jpg",
+        "imgSrc": "Ava_Brushed_Gold.jpeg",
         "reviews": 209,
         "rating": 4.5
     },
@@ -55,7 +55,7 @@
         "category": "Ava",
         "price": 115.99,
         "quantity": 0,
-        "imgSrc": "Ava_Brushed_Silver.jpg",
+        "imgSrc": "Ava_Brushed_Silver.jpeg",
         "reviews": 209,
         "rating": 4
     },
@@ -65,7 +65,7 @@
         "category": "Ava",
         "price": 115.99,
         "quantity": 10,
-        "imgSrc": "Ava_Gold_Jet_Black.jpg",
+        "imgSrc": "Ava_Gold_Jet_Black.jpeg",
         "reviews": 209,
         "rating": 5
     },
@@ -75,7 +75,7 @@
         "category": "Chrono S",
         "price": 149.99,
         "quantity": 10,
-        "imgSrc": "Chrono_S_Copper_Slate_Blue.jpg",
+        "imgSrc": "Chrono_S_Copper_Slate_Blue.jpeg",
         "reviews": 209,
         "rating": 5
     },
@@ -85,7 +85,7 @@
         "category": "Chrono S",
         "price": 149.99,
         "quantity": 0,
-        "imgSrc": "Chrono-S-Blue-Steel.jpg",
+        "imgSrc": "Chrono-S-Blue-Steel.jpeg",
         "reviews": 209,
         "rating": 4.5
     },
@@ -95,7 +95,7 @@
         "category": "Chrono S",
         "price": 149.99,
         "quantity": 10,
-        "imgSrc": "Chrono-S-Gunmetal_Walnut.jpg",
+        "imgSrc": "Chrono-S-Gunmetal_Walnut.jpeg",
         "reviews": 209,
         "rating": 3.5
     },
@@ -105,7 +105,7 @@
         "category": "Chrono S",
         "price": 149.99,
         "quantity": 10,
-        "imgSrc": "Chrono-S-Matte-Black-Steel.jpg",
+        "imgSrc": "Chrono-S-Matte-Black-Steel.jpeg",
         "reviews": 209,
         "rating": 5
     },
@@ -115,7 +115,7 @@
         "category": "Chrono S",
         "price": 149.99,
         "quantity": 10,
-        "imgSrc": "Chrono-S-Matte-Gray.jpg",
+        "imgSrc": "Chrono-S-Matte-Gray.jpeg",
         "reviews": 209,
         "rating": 3.5
     },
@@ -125,7 +125,7 @@
         "category": "Chrono S",
         "price": 149.99,
         "quantity": 10,
-        "imgSrc": "Chrono-S-Rose-Gold_White.jpg",
+        "imgSrc": "Chrono-S-Rose-Gold_White.jpeg",
         "reviews": 209,
         "rating": 4.5
     },
@@ -135,7 +135,7 @@
         "category": "Eros Mesh",
         "price": 129.99,
         "quantity": 15,
-        "imgSrc": "Eros_33mm_Mesh_Silver_White.jpg",
+        "imgSrc": "Eros_33mm_Mesh_Silver_White.jpeg",
         "reviews": 209,
         "rating": 4.5
     },
@@ -145,7 +145,7 @@
         "category": "Eros Mesh",
         "price": 129.99,
         "quantity": 15,
-        "imgSrc": "Eros_Mesh_Matte_Black.jpg",
+        "imgSrc": "Eros_Mesh_Matte_Black.jpeg",
         "reviews": 209,
         "rating": 5
     },
@@ -155,7 +155,7 @@
         "category": "Eros Mesh",
         "price": 129.99,
         "quantity": 15,
-        "imgSrc": "Eros_Mesh_Rose_Blue_Pearl.jpg",
+        "imgSrc": "Eros_Mesh_Rose_Blue_Pearl.jpeg",
         "reviews": 209,
         "rating": 4.5
     },
@@ -165,7 +165,7 @@
         "category": "Eros Mesh",
         "price": 129.99,
         "quantity": 15,
-        "imgSrc": "Eros_Mesh_Rose_White.jpg",
+        "imgSrc": "Eros_Mesh_Rose_White.jpeg",
         "reviews": 209,
         "rating": 4.5
     },
@@ -175,7 +175,7 @@
         "category": "Eros",
         "price": 129.99,
         "quantity": 15,
-        "imgSrc": "Marble_Carrara_Harbor_Gray.jpg",
+        "imgSrc": "Marble_Carrara_Harbor_Gray.jpeg",
         "reviews": 209,
         "rating": 3
     },
@@ -185,7 +185,7 @@
         "category": "Rogue",
         "price": 139.99,
         "quantity": 10,
-        "imgSrc": "Rogue_Black_Rose_Gold.jpg",
+        "imgSrc": "Rogue_Black_Rose_Gold.jpeg",
         "reviews": 209,
         "rating": 4.5
     },
@@ -195,7 +195,7 @@
         "category": "Rogue",
         "price": 139.99,
         "quantity": 10,
-        "imgSrc": "Rogue_Blue_Cobolt.jpg",
+        "imgSrc": "Rogue_Blue_Cobolt.jpeg",
         "reviews": 209,
         "rating": 4
     },
@@ -205,7 +205,7 @@
         "category": "Rogue",
         "price": 139.99,
         "quantity": 10,
-        "imgSrc": "Rogue_Rose_Gold.jpg",
+        "imgSrc": "Rogue_Rose_Gold.jpeg",
         "reviews": 209,
         "rating": 3.5
     },
@@ -215,7 +215,7 @@
         "category": "Rogue",
         "price": 139.99,
         "quantity": 10,
-        "imgSrc": "Rogue-Silver_Black.jpg",
+        "imgSrc": "Rogue-Silver_Black.jpeg",
         "reviews": 209,
         "rating": 4.5
     }
