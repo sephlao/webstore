@@ -8,9 +8,9 @@ const SETTINGS = {
 // start with empty cart
 const CART = {
     items: [],
-    add: function (item) { this.items.push(item) },
-    remove: function (id) { this.items.splice(this.items.findIndex(c => c.id == id), 1) },
-    find: function (id) { return this.items.find(c => c.id == id) }
+    add(item) { this.items.push(item) },
+    remove(id) { this.items.splice(this.items.findIndex(c => c.id == id), 1) },
+    find(id) { return this.items.find(c => c.id == id) }
 }
 
 /**
