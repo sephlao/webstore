@@ -122,7 +122,6 @@ section.filter {
 .filter > .form-group > label {
     display: block;
     font-weight: bold;
-    /* text-transform: uppercase; */
     font-size: .75em;
 
 }
@@ -138,6 +137,13 @@ section.filter {
     margin: 1em 1.5em -1em 1.5em;
 }
 
+/* .products > p > span {
+    position: absolute;
+    right: 0;
+    padding: 0 1em;
+    font-size: 1.5em;
+} */
+
 .card {
     background: #ffffff;
     padding: 1em;
@@ -145,7 +151,6 @@ section.filter {
     border-radius: 3px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border: 1px solid #e6e6e6;
-    /* max-height: 20em; */
 }
 
 .product-img {
@@ -177,20 +182,13 @@ section.filter {
     align-items: end;
 }
 
-.btn.add {
-    background: black;
-    color: white;
-    width: 100%;
-    margin: 1em 0 0 0;
-    padding: .5em;
-    border-radius: 3px;
-    text-transform: uppercase;
-    font-weight: bold;
+button.material-icons {
+    font-weight: bold
 }
 
-.btn.add.out {
-    background: #d50000;
-    font-style: italic;
+.out {
+    color: #d50000;
+    /* font-style: italic; */
 }
 
 .card-body .form-group {
@@ -242,7 +240,7 @@ section.filter {
     color: black;
 }
 
-.cart.wrapper {
+.wrapper {
     background: rgba(0, 0, 0, .8);
     position: absolute;
     top: 0;
@@ -265,7 +263,7 @@ section.filter {
 }
 
 
-.card.product-invoice {
+.product-selected {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
@@ -355,8 +353,36 @@ section.filter {
     border-radius: 3px;
 }
 
-.cart.wrapper.show {
+.wrapper.show {
     display: block;
+}
+
+.product-description {
+    padding: 0 1em;
+    text-align: center;
+}
+
+.product.wrapper .card {
+    margin: 0;
+}
+
+.wrapper .card-body {
+    grid-template-columns: 1fr;
+}
+
+.wrapper .product-img {
+    max-height: 15em;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.liked {
+    color: #c88068;
 }
 
 .links, .socials-row, .news-row {

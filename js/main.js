@@ -13,6 +13,12 @@ const CART = {
     find(id) { return this.items.find(c => c.id == id) }
 }
 
+const FAVORITE = {
+    items: [],
+    add(item) { this.items.push(item) },
+    remove(id) { this.items.splice(this.items.findIndex(c => c.id == id), 1) },
+}
+
 /**
  * get products data using async await
  */
@@ -22,7 +28,7 @@ const getProductsData = async () => await fetch(`data/products.json`).then(d => 
  * returns product as html template
  * @param {{}} product 
  */
-const getProductTemplate = product => {
+const getProductTemplate = (product, showDescription = false) => {
     const getRatingsHTML = rating => { // takes rating number and converts it to material icon
         let halfStar = rating % 1;
         let starIcon = '';
@@ -49,6 +55,7 @@ const getProductTemplate = product => {
         </div>
         <div class="card-body">
             <img src="${SETTINGS.imagePath + product.imgSrc}" class="product-img" alt="${product.name}">
+            ${showDescription ? `<p class="product-description">${product.description}</p>` : ''}
             <div class="extra_info">
             <div class="form-group">
                 <p>Case Size:</p>
@@ -59,7 +66,12 @@ const getProductTemplate = product => {
             </div>
             <div class="rating">${getRatingsHTML(product.rating)}</div>
             <a href="#" class="reviews">${product.reviews} reviews</a>
-            <button type="button" class="btn add ${!product.quantity ? 'out' : ''}" data-productid="${product.id}">${!product.quantity ? 'sold out' : 'add to cart'}</button>
+            <div class="action-buttons" data-productid="${product.id}">
+                ${!product.quantity ? `<small class="out">Sold out</small>` : `
+                <button type="button" class="btn add material-icons" name="addProduct">add_shopping_cart</button>`}
+                <button type="button" class="btn fave material-icons" name="addFavorite">favorite_border</button>
+
+            </div>
             </div>
         </div>
     </section>`
@@ -68,10 +80,10 @@ const getProductTemplate = product => {
 /**
  * renders products on html page
  * @param {{}} products 
- */
-const renderProductsOnHTML = products =>
+ */ //<span type="button" class="material-icons" >filter_list</span></p>
+const renderProductsOnHTML = products => 
     document.getElementById(`products`).innerHTML =
-    `<p>Showing ${products.length} products...</p>` + products.reduce((acc, p) => acc + getProductTemplate(p), ``);
+    `<p>Showing ${products.length} products...` + products.reduce((acc, p) => acc + getProductTemplate(p), ``);
 
 /**
  * returns sorted products
@@ -140,7 +152,7 @@ const getProductsOnCart = (products) => {
 
 const getCartProductAsHTMLString = products => {
     const template = p =>
-        `<div class="card product-invoice">
+        `<div class="card product-selected">
         <div class="product-info">
             <img src="${SETTINGS.imagePath}${p.imgSrc}" alt="img">
             <p>${p.name} - ${p.toCheckout.size} MM</p>
@@ -170,7 +182,7 @@ const renderInvoiceOnHTML = products => {
 
     // calculate subtotal, total and taxes
     document.getElementById(`invoice`).innerHTML =
-        products.length > 0 ? template(products.reduce((sum, p) => sum + p.toCheckout.price, 0)) : '';
+        products.length ? template(products.reduce((sum, p) => sum + p.toCheckout.price, 0)) : '';
 }
 
 const getCartCountText = () => `You have ${CART.items.length} item${CART.items.length == 1 ? '' : 's'} in your cart`;
@@ -185,6 +197,8 @@ const toggleShoppingCart = products => {
         const c = `<p id="checkout_count">${getCartCountText()}</p>`;
         document.getElementById(`cartItems`).innerHTML = c + getCartProductAsHTMLString(getProductsOnCart(products));
     }
+
+    document.querySelector(`aside.product.wrapper`).classList.remove('show');// make sure product modal is hidden
 }
 
 const updateCheckoutPriceAndQuantity = (p, q, id) => {
@@ -217,6 +231,27 @@ const incrementQuantity = id => {
     updateCheckoutPriceAndQuantity(product.price, product.quantity, id);
 }
 
+const openProductModal = product => {
+    document.querySelector(`aside.product.wrapper`).classList.toggle(`show`)
+    document.getElementById(`product`).innerHTML = getProductTemplate(product, true)
+}
+
+const toggleFavorite = id => {
+    const index = FAVORITE.items.findIndex(i => i == id);
+    const btnElm = document.querySelector(`div[data-productid="${id}"] > .btn.fave`);
+    let btnText = 'favorite';
+    if (index < 0) {
+        FAVORITE.add(id)
+    } else {
+        FAVORITE.remove(index);
+        btnText = 'favorite_border'
+    }
+    btnElm.classList.toggle('liked')
+    btnElm.innerText = btnText;
+}
+
+const closeModal = t => t.classList.remove('show') // works with cart/product modal
+
 /**
  * window on load event listener
  */
@@ -234,20 +269,22 @@ window.addEventListener(`load`, async () => {
     document.querySelectorAll(`select`).forEach(s => s.addEventListener(`change`, listenToFilterEvents));
     // prevent form submit
     document.querySelector(`form`).addEventListener(`submit`, e => e.preventDefault());
-    
+
     // body click event deligation
     document.body.addEventListener(`click`, ({ target }) => {
         const match = str => target.matches(str);
-        if (match(`button[data-productid]`) && !target.className.includes(`out`)) addProductToCart(target.dataset.productid);
-        else if (match(`.cart.wrapper`) || match(`button.btn.shopping_cart`) || match(`button.btn.shopping_cart > .material-icons`)) toggleShoppingCart([...products]);
-        else if (match(`.material-icons.remove`)) {
+        if (match(`button[name="addProduct"]`)) addProductToCart(target.parentElement.dataset.productid);
+        else if (match(`button[name="addFavorite"]`)) toggleFavorite(target.parentElement.dataset.productid);
+        else if (match(`button.btn.shopping_cart`) || match(`button.btn.shopping_cart > .material-icons`)) toggleShoppingCart([...products]);
+        else if (match(`aside.wrapper`)) closeModal(target);
+        else if (match(`span.material-icons.remove`)) {
             decrementQuantity(target.parentNode.dataset.cartid);
             renderInvoiceOnHTML(getProductsOnCart([...products]));
         }
-        else if (match(`.material-icons.add`)) {
+        else if (match(`span.material-icons.add`)) {
             incrementQuantity(target.parentNode.dataset.cartid)
             renderInvoiceOnHTML(getProductsOnCart([...products]));
-        }
+        } else if (match(`.product-img`)) openProductModal(products.find(p => p.id == target.parentElement.querySelector(`div.action-buttons`).dataset.productid))
         else return;
     });
 });
