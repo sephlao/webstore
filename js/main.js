@@ -17,6 +17,7 @@ const FAVORITE = {
     items: [],
     add(item) { this.items.push(item) },
     remove(id) { this.items.splice(this.items.findIndex(c => c.id == id), 1) },
+    includes(id) { return this.items.includes(id) }
 }
 
 /**
@@ -69,8 +70,7 @@ const getProductTemplate = (product, showDescription = false) => {
             <div class="action-buttons" data-productid="${product.id}">
                 ${!product.quantity ? `<small class="out">Sold out</small>` : `
                 <button type="button" class="btn add material-icons" name="addProduct">add_shopping_cart</button>`}
-                <button type="button" class="btn fave material-icons" name="addFavorite">favorite_border</button>
-
+                <button type="button" class="btn fave material-icons ${FAVORITE.includes(product.id) ? 'liked' : ''}" name="toggleFavorite">${FAVORITE.includes(product.id) ? 'favorite' : 'favorite_border'}</button>
             </div>
             </div>
         </div>
@@ -81,7 +81,7 @@ const getProductTemplate = (product, showDescription = false) => {
  * renders products on html page
  * @param {{}} products 
  */ //<span type="button" class="material-icons" >filter_list</span></p>
-const renderProductsOnHTML = products => 
+const renderProductsOnHTML = products =>
     document.getElementById(`products`).innerHTML =
     `<p>Showing ${products.length} products...` + products.reduce((acc, p) => acc + getProductTemplate(p), ``);
 
@@ -238,16 +238,16 @@ const openProductModal = product => {
 
 const toggleFavorite = id => {
     const index = FAVORITE.items.findIndex(i => i == id);
-    const btnElm = document.querySelector(`div[data-productid="${id}"] > .btn.fave`);
     let btnText = 'favorite';
-    if (index < 0) {
-        FAVORITE.add(id)
-    } else {
+    if (index < 0) FAVORITE.add(id)
+    else {
         FAVORITE.remove(index);
         btnText = 'favorite_border'
     }
-    btnElm.classList.toggle('liked')
-    btnElm.innerText = btnText;
+    document.querySelectorAll(`div[data-productid="${id}"] > .btn.fave`).forEach(f => {
+        f.classList.toggle('liked')
+        f.innerText = btnText;
+    });
 }
 
 const closeModal = t => t.classList.remove('show') // works with cart/product modal
@@ -274,7 +274,7 @@ window.addEventListener(`load`, async () => {
     document.body.addEventListener(`click`, ({ target }) => {
         const match = str => target.matches(str);
         if (match(`button[name="addProduct"]`)) addProductToCart(target.parentElement.dataset.productid);
-        else if (match(`button[name="addFavorite"]`)) toggleFavorite(target.parentElement.dataset.productid);
+        else if (match(`button[name="toggleFavorite"]`)) toggleFavorite(target.parentElement.dataset.productid);
         else if (match(`button.btn.shopping_cart`) || match(`button.btn.shopping_cart > .material-icons`)) toggleShoppingCart([...products]);
         else if (match(`aside.wrapper`)) closeModal(target);
         else if (match(`span.material-icons.remove`)) {
