@@ -30,6 +30,7 @@ const getProductsData = async () => await fetch(`data/products.json`).then(d => 
  * @param {{}} product 
  */
 const getProductTemplate = (product, showDescription = false) => {
+    const radioName = `${product.id}_caseSize${showDescription ? 'Modal' : ''}`; // same product will show twice (products view/modal view)
     const getRatingsHTML = rating => { // takes rating number and converts it to material icon
         let halfStar = rating % 1;
         let starIcon = '';
@@ -60,10 +61,10 @@ const getProductTemplate = (product, showDescription = false) => {
             <div class="extra_info">
             <div class="form-group">
                 <p>Case Size:</p>
-                <input type="radio" name="${product.id}_caseSize" value="40" id="${product.id}_40" checked>
-                <label for="${product.id}_40">40</label>
-                <input type="radio" name="${product.id}_caseSize" value="43" id="${product.id}_43">
-                <label for="${product.id}_43">43</label>
+                <input type="radio" name="${radioName}" value="40" id="${product.id + (showDescription ? '_modal' : '' )}_40" checked>
+                <label for="${product.id + (showDescription ? '_modal' : '' )}_40">40</label>
+                <input type="radio" name="${radioName}" value="43" id="${product.id + (showDescription ? '_modal' : '' )}_43">
+                <label for="${product.id + (showDescription ? '_modal' : '' )}_43">43</label>
             </div>
             <div class="rating">${getRatingsHTML(product.rating)}</div>
             <a href="#" class="reviews">${product.reviews} reviews</a>
@@ -127,7 +128,8 @@ const doFiltering = products => {
  */
 const addProductToCart = productId => {
     const cartId = (i, s) => i + '_' + s;
-    const caseSize = +document.querySelector(`input[name="${productId}_caseSize"]:checked`).value;
+    const caseSizeOnModal = document.querySelector(`input[name="${productId}_caseSizeModal"]:checked`);
+    const caseSize = caseSizeOnModal ? +caseSizeOnModal.value : +document.querySelector(`input[name="${productId}_caseSize"]:checked`).value;
 
     // find product on cart if it exist increment qty else add item to cart
     const cartItem = CART.find(cartId(productId, caseSize));
