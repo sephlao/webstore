@@ -128,8 +128,9 @@ const doFiltering = products => {
  */
 const addProductToCart = productId => {
     const cartId = (i, s) => i + '_' + s;
-    const caseSizeOnModal = document.querySelector(`input[name="${productId}_caseSizeModal"]:checked`);
-    const caseSize = caseSizeOnModal ? +caseSizeOnModal.value : +document.querySelector(`input[name="${productId}_caseSize"]:checked`).value;
+    const caseSize = document.querySelector(`.product.wrapper.show`) ?
+        +document.querySelector(`input[name="${productId}_caseSizeModal"]:checked`).value :
+        +document.querySelector(`input[name="${productId}_caseSize"]:checked`).value;
 
     // find product on cart if it exist increment qty else add item to cart
     const cartItem = CART.find(cartId(productId, caseSize));
