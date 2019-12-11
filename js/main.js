@@ -2,7 +2,8 @@
 const SETTINGS = {
     sort: 'plh', // price low to high
     category: 'all', // show all products
-    imagePath: 'img/products/'
+    imagePath: 'img/products/',
+    productsPerPage: 5
 };
 
 // start with empty cart
@@ -61,10 +62,10 @@ const getProductTemplate = (product, showDescription = false) => {
             <div class="extra_info">
             <div class="form-group">
                 <p>Case Size:</p>
-                <input type="radio" name="${radioName}" value="40" id="${product.id + (showDescription ? '_modal' : '' )}_40" checked>
-                <label for="${product.id + (showDescription ? '_modal' : '' )}_40">40</label>
-                <input type="radio" name="${radioName}" value="43" id="${product.id + (showDescription ? '_modal' : '' )}_43">
-                <label for="${product.id + (showDescription ? '_modal' : '' )}_43">43</label>
+                <input type="radio" name="${radioName}" value="40" id="${product.id + (showDescription ? '_modal' : '')}_40" checked>
+                <label for="${product.id + (showDescription ? '_modal' : '')}_40">40</label>
+                <input type="radio" name="${radioName}" value="43" id="${product.id + (showDescription ? '_modal' : '')}_43">
+                <label for="${product.id + (showDescription ? '_modal' : '')}_43">43</label>
             </div>
             <div class="rating">${getRatingsHTML(product.rating)}</div>
             <a href="#" class="reviews">${product.reviews} reviews</a>
@@ -119,7 +120,9 @@ const doFiltering = products => {
     const search = document.getElementById(`search`).value.trim().toLowerCase();
     // filter products by category then sort accordingly if search value is > 2 then search product
     const filteredProducts = getSearchedProducts(search.length > 2 ? search : '', getSortedProducts(sort, !category ? products : getProductsByCategory(category, products)));
-    renderProductsOnHTML(filteredProducts)
+
+    // renderProductsOnHTML(filteredProducts);
+    return filteredProducts;
 };
 
 /**
@@ -255,6 +258,23 @@ const toggleFavorite = id => {
 
 const closeModal = t => t.classList.remove('show') // works with cart/product modal
 
+const renderPagination = (start, noOfPages) => {
+    let template = '';
+    for (let i = 1; i <= noOfPages; i++) {
+        template += `<li class="${start == i ? 'active' : ''}"><button name="pagination" value="${i}">${i}</button></li>`
+    }
+    document.getElementById(`pagination`).innerHTML = template;
+}
+
+const getProductsPerPage = (products, page) => {
+    const noOfPages = Math.ceil(products.length / SETTINGS.productsPerPage);
+    page = page > noOfPages ? 1 : page;
+    let startAt = ((page - 1) * SETTINGS.productsPerPage);
+    const productsOnPage = products.slice(startAt, (startAt + SETTINGS.productsPerPage));
+    renderPagination(page, noOfPages);
+    return productsOnPage;
+}
+
 /**
  * window on load event listener
  */
@@ -263,9 +283,10 @@ window.addEventListener(`load`, async () => {
     const products = await getProductsData();
     // sort products by default settings
     // render products on html
-    renderProductsOnHTML(getSortedProducts(SETTINGS.sort, [...products]));
 
-    const listenToFilterEvents = () => doFiltering([...products]);
+    renderProductsOnHTML(getProductsPerPage(getSortedProducts(SETTINGS.sort, [...products]), 1));
+
+    const listenToFilterEvents = () => renderProductsOnHTML(getProductsPerPage(doFiltering([...products]), +document.querySelector(`#pagination > li.active > button`).value));
     // add search event listener
     document.getElementById(`search`).addEventListener(`input`, listenToFilterEvents);
     // add filter event listener for sort and category
@@ -288,6 +309,7 @@ window.addEventListener(`load`, async () => {
             incrementQuantity(target.parentNode.dataset.cartid)
             renderInvoiceOnHTML(getProductsOnCart([...products]));
         } else if (match(`.product-img`)) openProductModal(products.find(p => p.id == target.parentElement.querySelector(`div.action-buttons`).dataset.productid))
+        else if (match(`[name="pagination"]`)) renderProductsOnHTML(getProductsPerPage(doFiltering([...products]), +target.value));
         else return;
     });
 });

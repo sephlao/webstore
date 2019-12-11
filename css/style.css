@@ -445,6 +445,20 @@ button.material-icons {
     justify-self: stretch;
 }
 
+.pagination > ul {
+    display: flex;
+    max-width: 10em;
+    justify-content: space-evenly;
+    margin: 0 auto;
+}
+
+
+.pagination li.active {
+    color: #c88068;
+    border: 1px solid;
+    border-radius: 4px;
+}
+
  /* responsiveness  */
 @media screen and (min-width: 350px) {
     .card-body {
