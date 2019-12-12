@@ -258,16 +258,29 @@ const toggleFavorite = id => {
 
 const closeModal = t => t.classList.remove('show') // works with cart/product modal
 
-const renderPagination = (start, noOfPages) => {
-    let template = '';
+const renderPagination = (start = 1, noOfPages = 0) => {
+    let template = [];
+    let takeFrom = start - 1;
+    let takeUntil = takeFrom + 5;
+    let whileIndex = 1;
     for (let i = 1; i <= noOfPages; i++) {
-        template += `<li class="${start == i ? 'active' : ''}"><button name="pagination" value="${i}">${i}</button></li>`
+        if (i > takeFrom && i <= takeUntil)
+            template.push(`<li class="${start == i ? 'active' : ''}"><button name="pagination" value="${i}">${i}</button></li>`);
     }
-    document.getElementById(`pagination`).innerHTML = template;
+    while (template.length < 5) {
+        template.push(`<li><button name="pagination" value="${whileIndex}">${whileIndex}</button></li>`);
+        whileIndex++;
+    }
+    // window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    document.getElementById(`pagination`).innerHTML = template.join('');
 }
 
-const getProductsPerPage = (products, page) => {
+const getProductsPerPage = (products, page = 1) => {
     const noOfPages = Math.ceil(products.length / SETTINGS.productsPerPage);
+    if (noOfPages == 1) {
+        renderPagination();
+        return products;
+    };
     page = page > noOfPages ? 1 : page;
     let startAt = ((page - 1) * SETTINGS.productsPerPage);
     const productsOnPage = products.slice(startAt, (startAt + SETTINGS.productsPerPage));
@@ -286,7 +299,10 @@ window.addEventListener(`load`, async () => {
 
     renderProductsOnHTML(getProductsPerPage(getSortedProducts(SETTINGS.sort, [...products]), 1));
 
-    const listenToFilterEvents = () => renderProductsOnHTML(getProductsPerPage(doFiltering([...products]), +document.querySelector(`#pagination > li.active > button`).value));
+    const listenToFilterEvents = () => {
+        const pageElm = document.querySelector(`#pagination > li.active > button`)
+        renderProductsOnHTML(getProductsPerPage(doFiltering([...products]), pageElm ? +pageElm.value : 1))
+    };
     // add search event listener
     document.getElementById(`search`).addEventListener(`input`, listenToFilterEvents);
     // add filter event listener for sort and category
